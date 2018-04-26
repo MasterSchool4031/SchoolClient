@@ -27,7 +27,6 @@ public class BookURLConnection extends URLConnection {
 	 */
 	public BookURLConnection(URL url) {
 		super(url);
-		System.out.println("BookURLConnection.BookURLConnection()");
 	}
 
 	/**
@@ -39,7 +38,6 @@ public class BookURLConnection extends URLConnection {
 	 */
 	@Override
 	public void connect() throws IOException {
-		System.out.println("BookURLConnection.connect()");
 		URL locURL = super.getURL();
 		int port = locURL.getPort();
 		if (port == -1) {
@@ -53,9 +51,6 @@ public class BookURLConnection extends URLConnection {
 
 			PrintStream out = new PrintStream(socket.getOutputStream());
 			out.println("book:" + locURL.getFile());
-			// } catch (SecurityException e) {
-			// e.printStackTrace();
-			// }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,7 +61,6 @@ public class BookURLConnection extends URLConnection {
 	 */
 	@Override
 	public String getContentType() {
-		System.out.println("BookURLConnection.getContentType()");
 		return "text/html";
 	}
 
@@ -76,7 +70,6 @@ public class BookURLConnection extends URLConnection {
 	 */
 	@Override
 	public synchronized InputStream getInputStream() throws IOException {
-		System.out.println("BookURLConnection.getInputStream()");
 		if (!connected)
 			this.connect();
 		return input;
